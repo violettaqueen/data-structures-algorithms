@@ -23,16 +23,17 @@ public class SetReview {
 
     }
     public static Character firstRepeatingChar(String str){
-        // What is the time complexity of the following code? O(n)
-
-
-        // create a hashSet
+                                              // What is the time complexity of the following code? O(n)
+                                              // create a hashSet
         Set<Character> chars=new HashSet<>(); // in here I have Space Complexity of O(n)
-        // iterate over the char array and add chars into hashSet
+                                              // iterate over the char array and add chars into hashSet
 
-
-        for(Character ch:str.toCharArray()) if (!chars.add(ch)) return ch;
-        // if add ops is false return that char
+        for(Character ch:str.toCharArray()){
+            if (!chars.add(ch)){              //if it's not true
+                return ch;
+            }
+        }
+                                               // if add ops is false return that char
 
        return null;
     }
