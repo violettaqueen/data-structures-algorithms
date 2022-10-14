@@ -15,9 +15,12 @@ public class Assignment1_TwoSumOptional {
         // Complexity of the solution is O(n) but I have space complexity of O(n)
         // create hashmap
         Map<Integer,Integer> map=new HashMap<>();
+
         for (int i = 0; i <array.length ; i++) {
             int potentialMatch=targetValue-array[i];
-            if (map.containsKey(potentialMatch)) return new int[] {i,map.get(potentialMatch)};
+            if (map.containsKey(potentialMatch)){
+                return new int[] {i,map.get(potentialMatch)};
+            }
             else map.put(array[i], i);
 
         }

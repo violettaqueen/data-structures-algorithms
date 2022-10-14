@@ -24,8 +24,7 @@ public class MapReview {
           }
           else map.put(ch, 1);
       }
-
-     // start from the beginning and check if there is a char with frequency 1
+      // start from the beginning and check if there is a char with frequency 1
         for(Character ch:str.toCharArray()){
             if(map.get(ch)==1) return ch;
         }
