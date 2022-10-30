@@ -14,6 +14,7 @@
         <module>dsa-04-LinkedLists</module>
         <module>dsa-05-Stacks</module>
         <module>dsa-06-Queues_Hashing</module>
+        <module>dsa-07-Trees</module>
     </modules>
 
     <properties>
