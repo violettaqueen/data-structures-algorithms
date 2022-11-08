@@ -2,6 +2,7 @@ package com.cydeo.tree2;
 
 public class BinaryTree {
 
+
     //find a maximum number in tree
 
     public int maxInBinaryTree(TNode root){
@@ -33,6 +34,7 @@ public class BinaryTree {
         } // check leftChild, then check rightChild
         return searchInBinaryTree(root.leftChild, value) || searchInBinaryTree(root.rightChild, value);
     }
+
 
 
 
