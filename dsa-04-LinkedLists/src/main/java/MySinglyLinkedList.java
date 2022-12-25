@@ -9,69 +9,85 @@ public class MySinglyLinkedList {
         return head == null;
     }
 
-  void addFirst(int data){
-      // create a new node object from data
-      Node node=new Node(data);
-     // case 1: list empty
-      if(isEmpty()){
-       head=tail=node; //variable node is actually an address of a node
-      } else{// case 2 : list is not empty, add items after the tail
-          node.next=head;
-          head=node;
-      }
-      //increase size
-      size++;
-  }
-  public int getKthItemFromLast(int k){
+    void addFirst(int data) {
+        // create a new newNode object from data
+        Node newNode = new Node(data);
+        // case 1: list empty
+        if (isEmpty()) {
+            head = tail = newNode;                        // variable newNode is actually an address of a newNode
+        } else {                                    // case 2 : list is not empty, add items in the beginning
+            newNode.next = head;
+            head = newNode;
+        }
+        // increase size
+        size++;
+    }
+
+    void addLast(int data) {
+
+        Node newNode = new Node(data);           // create a new node
+
+        if (isEmpty()) {                         // if list is empty assign the new node
+            head = tail = newNode;
+            size++;
+        } else {
+            tail.next = newNode;                 // if it's not empty assign it to tail
+            tail = newNode;
+            size++;                              // always increase size
+        }
+    }
+    public int getKthItemFromLast(int k) {
         // create two pointers
-        Node ptr1=head;
-        Node ptr2=head;
+        Node ptr1 = head;
+        Node ptr2 = head;
         // move ptr2 k-1 times
 
-      for (int i = 0; i < k-1; i++) {
-          ptr2=ptr2.next;
-      }
-      // move both pointers until ptr2 hits the last element
-      while(ptr2.next!=null){
-          ptr1=ptr1.next;
-          ptr2=ptr2.next;
-      }
-      // ptr1 is on the kth element from the last
-      return ptr1.id;
-  }
-    public void removeKthItemFromLast(int k){
-        // create three pointers
-        Node ptr1=head;
-        Node ptr2=head;
-        Node prev=null;
-        // move ptr2 k-1 times
-
-        for (int i = 0; i < k-1; i++) {
-            ptr2=ptr2.next;
+        for (int i = 0; i < k - 1; i++) {
+            ptr2 = ptr2.next;
         }
         // move both pointers until ptr2 hits the last element
-        while(ptr2.next!=null){
-            prev=ptr1;
-            ptr1=ptr1.next;
-            ptr2=ptr2.next;
+        while (ptr2.next != null) {
+            ptr1 = ptr1.next;
+            ptr2 = ptr2.next;
         }
         // ptr1 is on the kth element from the last
-       // Do delete operation
-        if (ptr1==head){
-            head=ptr1.next;
-            ptr1.next=null;
+        return ptr1.id;
+    }
+
+    public void removeKthItemFromLast(int k) {
+        // create three pointers
+        Node ptr1 = head;
+        Node ptr2 = head;
+        Node prev = null;
+        // move ptr2 k-1 times
+
+        for (int i = 0; i < k - 1; i++) {
+            ptr2 = ptr2.next;
+        }
+        // move both pointers until ptr2 hits the last element
+        while (ptr2.next != null) {
+            prev = ptr1;
+            ptr1 = ptr1.next;
+            ptr2 = ptr2.next;
+        }
+        // ptr1 is on the kth element from the last
+        // Do delete operation
+        if (ptr1 == head) {
+            head = ptr1.next;
+            ptr1.next = null;
             size--;
-        }else if(ptr1==tail){
-            tail=prev;
-            prev.next=null;
+        } else if (ptr1 == tail) {
+            tail = prev;
+            prev.next = null;
             size--;
         } else {
-            prev.next=ptr1.next;
-            ptr1.next=null;
+            prev.next = ptr1.next;
+            ptr1.next = null;
             size--;
 
         }
     }
+
     void add(int data) {
         // create a new node object from data
         Node node = new Node(data);
@@ -86,88 +102,89 @@ public class MySinglyLinkedList {
         }
 
     }
-    void deleteById(int id){
+
+    void deleteById(int id) {
         // check if empty
-        if(isEmpty()) System.out.println("List is empty!!!");
+        if (isEmpty()) System.out.println("List is empty!!!");
         // assign prev and current with the head
-        Node prev=head;
-        Node current=head;
-        while(current!=null){
-            if(current.id==id){// there is a match
+        Node prev = head;
+        Node current = head;
+        while (current != null) {
+            if (current.id == id) {// there is a match
                 //case 1: head
-                if(current==head){
-                    head=current.next;
-                    current.next=null;
+                if (current == head) {
+                    head = current.next;
+                    current.next = null;
                 }
                 // case 2 : tail
-                else if(current==tail){
-                    tail=prev;
-                    prev.next=null;//Ex -Tail will be eligible for Garbage Collection
+                else if (current == tail) {
+                    tail = prev; // new tail
+                    prev.next = null;//Ex -Tail will be eligible for Garbage Collection
                 }
                 // case 3 : middle
-                else{
-                    prev.next=current.next;
-                    current.next=null;// Current will be eligible for Garbage Collection
+                else {
+                    prev.next = current.next;
+                    current.next = null;// Current will be eligible for Garbage Collection
                 }
                 // after deletion
                 size--;
             }
             // move forward on the elements of the list
-            prev=current;
-            current=current.next;
-
+            prev = current;
+            current = current.next;
         }
 
     }
-    int indexOf(int id){
+
+    int indexOf(int id) {
         if (isEmpty()) return -1;
-        int pos=0;
-        // iterate through the list
-        Node current=head;// set my current with the starting element;
-        while(current!=null){
-            if(current.id==id) return pos;
+        int pos = 0;
+
+        Node current = head;           // set my current with the starting element;
+        while (current != null) {      // iterate through the list
+            if (current.id == id) return pos;
             pos++;
-            current=current.next;
+            current = current.next;
         }
         return -1;
     }
-    void printNodes(){
-        Node current=head;
-        while(current!=null){
-            if (current.next==null) System.out.println(current.id+"=> null");
+
+    void printNodes() {
+        Node current = head;                                                       // assign current to head
+        while (current != null) {
+            if (current.next == null) System.out.println(current.id + "=> null");  // if it's a last element
             else {
-            System.out.print(current.id+"=> ");
+                System.out.print(current.id + "=> ");
             }
-            current=current.next;
+            current = current.next;
         }
-  }
+    }
 
 
-    public void removeKthFromLast2(int k){
-        Node ptr1=head;
-        Node ptr2=head;
-        for(int i=0;i<k-1;i++) {
+    public void removeKthFromLast2(int k) {
+        Node ptr1 = head;
+        Node ptr2 = head;
+        for (int i = 0; i < k - 1; i++) {
+            ptr2 = ptr2.next;
 
-            ptr2=ptr2.next;
+            if (ptr2 == null) System.out.println("Less than k elements");
 
-            if (ptr2==null)  System.out.println("Less than k elements");
-
-            else if(ptr2.next==null){
-                head=ptr1.next;
-                ptr1.next=null;
+            else if (ptr2.next == null) {
+                head = ptr1.next;
+                ptr1.next = null;
                 return;
             }
         }
-        while(ptr2.next.next!=null) {
+        while (ptr2.next.next != null) {
 
-            ptr1=ptr1.next;
-            ptr2=ptr2.next;
+            ptr1 = ptr1.next;
+            ptr2 = ptr2.next;
 
         }
 
-        ptr1.next=ptr1.next.next;
-        ptr1=ptr1.next;
-        ptr1=null;
+        ptr1.next = ptr1.next.next;
+        ptr1 = ptr1.next;
+        ptr1 = null;
 
 
     }
