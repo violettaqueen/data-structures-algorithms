@@ -29,9 +29,11 @@ public class MyStack<T> {
         } else{// more than one element
             peekNode=top;
             SNode prev=bottom;
+
             while(prev.next!=top){
                 prev=prev.next;
             }
+
             prev.next=null;
             top=prev;
         }
