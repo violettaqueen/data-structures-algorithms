@@ -2,6 +2,7 @@ package queue;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class QueueTask1 {
 
@@ -30,6 +31,8 @@ public class QueueTask1 {
         cq.add(1);
         cq.add(3);
         System.out.println(cq.remove());
+
+        Stack<Integer> myStack = new Stack<>();
 
     }
 }
